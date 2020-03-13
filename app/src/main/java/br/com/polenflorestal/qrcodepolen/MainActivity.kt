@@ -168,9 +168,10 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == QR_QR_SCANNER_REQUEST){
             if (resultCode == RESULT_OK) {
-                tvSelected.text = data?.getStringExtra(QR_DATA) ?: "-1";
-
-
+                //tvSelected.text = data?.getStringExtra(QR_DATA) ?: "-1";
+                val intent = Intent(this, ExibeArvore::class.java)
+                intent.putExtra("qr_code", data?.getStringExtra(QR_DATA))
+                startActivity(intent)
             }
         }
 
