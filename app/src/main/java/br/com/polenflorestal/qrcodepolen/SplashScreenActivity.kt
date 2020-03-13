@@ -3,8 +3,10 @@ package br.com.polenflorestal.qrcodepolen
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.Cursor
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -23,6 +25,16 @@ class SplashScreenActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.splash_version_name).text = versionName
 
         checkFirstRun()
+
+        DataBaseUtil.abrir(this)
+        var c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "empresa_resgate"), "empresa_resgate = 'Cenibra'", "")
+
+        while (c?.moveToNext()!!){
+            var cod : String = c.getString(0)
+            var emp : String = c.getString(1)
+
+            Log.i("BANCO_DADOS", "teste busca: $cod $emp");
+        }
 
         Handler().postDelayed( {fechaSplash()}, 500)
     }
@@ -45,6 +57,9 @@ class SplashScreenActivity : AppCompatActivity() {
             savedVersionCode == DEFAULT_INT_VALUE -> {
                 // this is a new install (or the user cleared the preferences)
                 // cria o BD, ...
+
+                DataBaseUtil.abrir(this)
+                DataBaseUtil.criaDB()
 
                 val editor = sharedPreferences.edit()
                 editor.putInt(SP_KEY_VERSION_CODE, currentVersionCode)

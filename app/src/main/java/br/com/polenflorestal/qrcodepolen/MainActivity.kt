@@ -169,6 +169,8 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == QR_QR_SCANNER_REQUEST){
             if (resultCode == RESULT_OK) {
                 tvSelected.text = data?.getStringExtra(QR_DATA) ?: "-1";
+
+
             }
         }
 
