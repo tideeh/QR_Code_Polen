@@ -6,27 +6,38 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var tvSelected : TextView
-    private lateinit var btnQRScan : Button
+    private lateinit var btnQRScan : ImageButton
     val REQUEST_ID_MULTIPLE_PERMISSIONS = 7
+
+    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerToggle: ActionBarDrawerToggle
+    private lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tvSelected = findViewById(R.id.tvSelected)
+        navigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+        configuraToolbarComNavDrawer()
+
         btnQRScan = findViewById(R.id.btnQRScan)
     }
 
@@ -179,14 +190,44 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
-        outState.putString("selectedID", tvSelected.text.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
+    }
 
-        tvSelected.text = savedInstanceState.getString("selectedID", "-1")
+    private fun configuraToolbarComNavDrawer() {
+        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setSupportActionBar(myToolbar)
+        //supportActionBar?.setDisplayShowHomeEnabled(true)
+        mDrawerLayout = findViewById(R.id.drawer_layout)
+
+        mDrawerToggle = ActionBarDrawerToggle(
+            this,
+            mDrawerLayout,
+            myToolbar,
+            R.string.drawer_open,
+            R.string.drawer_close
+        )
+
+        mDrawerLayout.addDrawerListener(mDrawerToggle)
+        mDrawerLayout.post { mDrawerToggle.syncState() }
+
+        //supportActionBar?.title = getString(R.string.fazenda)+": $fazendaCorrenteNome"
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+
+            //R.id.nav_item_testar_amostra -> {
+            //    startActivity(Intent(this, ExecutarTeste1Activity::class.java))
+            //}
+
+        }
+
+        mDrawerLayout.closeDrawers()
+
+        return true
     }
 
 }

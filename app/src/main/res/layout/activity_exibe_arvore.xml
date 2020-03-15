@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".ExibeArvore">
 
+    <!-- barra de tarefas -->
+    <include
+        android:id="@+id/my_toolbar"
+        layout="@layout/barra_tarefas" />
+
     <ScrollView
-        android:paddingBottom="20dp"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/rodape"
-        android:layout_alignParentTop="true">
+        android:layout_below="@id/my_toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -254,7 +258,8 @@
     </ScrollView>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:id="@+id/rodape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -283,15 +288,17 @@
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="10dp"
                 android:text="Acessar Croqui" />
         </LinearLayout>
 
         <ImageView
+            android:elevation="30dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
             android:src="@drawable/logo_horizontal" />
     </LinearLayout>

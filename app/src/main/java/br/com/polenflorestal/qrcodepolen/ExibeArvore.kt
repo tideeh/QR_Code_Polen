@@ -2,7 +2,9 @@ package br.com.polenflorestal.qrcodepolen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 
 class ExibeArvore : AppCompatActivity() {
 
@@ -32,6 +34,27 @@ class ExibeArvore : AppCompatActivity() {
             findViewById<TextView>(R.id.genitores).text = genitor_fem
 
             break
+        }
+
+        configuraToolbar()
+    }
+
+    private fun configuraToolbar() { // adiciona a barra de tarefas na tela
+        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setSupportActionBar(myToolbar)
+        // adiciona a seta de voltar na barra de tarefas
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar?.title =
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
