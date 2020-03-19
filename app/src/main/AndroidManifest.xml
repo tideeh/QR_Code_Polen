@@ -21,12 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_my_1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExibeArvore"></activity>
+        <activity android:name=".ExibeArvore1"></activity>
+        <activity android:name=".ExibeArvore" />
         <activity
             android:name=".QRScanner"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"

@@ -8,10 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 
 class ExibeArvore : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exibe_arvore)
+
 
         val codigo : String = intent.getStringExtra("qr_code")
         DataBaseUtil.abrir(this)
@@ -23,6 +22,7 @@ class ExibeArvore : AppCompatActivity() {
         }
 
         while (cursor?.moveToNext()!!){
+            val tipo = cursor?.getInt(cursor.getColumnIndex("tipo"))
             val local = cursor?.getString(cursor.getColumnIndex("local"))
             val parcela = cursor?.getInt(cursor.getColumnIndex("parcela"))
             val linha = cursor?.getInt(cursor.getColumnIndex("linha"))
@@ -36,18 +36,39 @@ class ExibeArvore : AppCompatActivity() {
             val dap = cursor?.getString(cursor.getColumnIndex("dap"))
             val altura = cursor?.getString(cursor.getColumnIndex("altura"))
             val vol = cursor?.getString(cursor.getColumnIndex("vol"))
+            val procedencia = cursor?.getString(cursor.getColumnIndex("procedencia"))
+            val historico = cursor?.getString(cursor.getColumnIndex("historico"))
 
-            findViewById<TextView>(R.id.local).text = local
-            findViewById<TextView>(R.id.data_plantio).text = data_plantio
-            findViewById<TextView>(R.id.talhao).text = bloco.toString()
-            findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
-            findViewById<TextView>(R.id.especie).text = codigo_geno
-            findViewById<TextView>(R.id.genitores).text = genitor_fem
+            if(tipo == 0){
+                setContentView(R.layout.activity_exibe_arvore)
 
-            findViewById<TextView>(R.id.ult_medicao).text = ult_medicao
-            findViewById<TextView>(R.id.dap).text = "$dap cm"
-            findViewById<TextView>(R.id.altura).text = "$altura m"
-            findViewById<TextView>(R.id.vol).text = "$vol m³"
+                findViewById<TextView>(R.id.local).text = local
+                findViewById<TextView>(R.id.data_plantio).text = data_plantio
+                findViewById<TextView>(R.id.talhao).text = bloco.toString()
+                findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
+                findViewById<TextView>(R.id.especie).text = codigo_geno
+                findViewById<TextView>(R.id.genitores).text = genitor_fem
+
+                findViewById<TextView>(R.id.ult_medicao).text = ult_medicao
+                findViewById<TextView>(R.id.dap).text = "$dap cm"
+                findViewById<TextView>(R.id.altura).text = "$altura m"
+                findViewById<TextView>(R.id.vol).text = "$vol m³"
+            }
+            else {
+                setContentView(R.layout.activity_exibe_arvore1)
+
+                findViewById<TextView>(R.id.local).text = local
+                findViewById<TextView>(R.id.data_plantio).text = data_plantio
+                findViewById<TextView>(R.id.talhao).text = bloco.toString()
+                findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
+                findViewById<TextView>(R.id.especie).text = codigo_geno
+                findViewById<TextView>(R.id.genitores).text = genitor_fem
+
+                findViewById<TextView>(R.id.ult_medicao).text = ult_medicao
+                findViewById<TextView>(R.id.dap).text = "$dap cm"
+                findViewById<TextView>(R.id.altura).text = "$altura m"
+                findViewById<TextView>(R.id.vol).text = "$vol m³"
+            }
 
             break
         }
