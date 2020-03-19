@@ -27,7 +27,7 @@ class SplashScreenActivity : AppCompatActivity() {
         checkFirstRun()
 
         DataBaseUtil.abrir(this)
-        var c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "empresa_resgate"), "empresa_resgate = 'Cenibra'", "")
+        var c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "local"), "local = 'Cenibra'", "")
 
         while (c?.moveToNext()!!){
             var cod : String = c.getString(0)
