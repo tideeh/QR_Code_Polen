@@ -27,7 +27,7 @@ class SplashScreenActivity : AppCompatActivity() {
         checkFirstRun()
 
         DataBaseUtil.abrir(this)
-        var c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "local"), "local = 'Viçosa'", "")
+        var c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "local"), "local = 'Viçosa/MG'", "")
 
         while (c?.moveToNext()!!){
             var cod : String = c.getString(0)
@@ -69,6 +69,10 @@ class SplashScreenActivity : AppCompatActivity() {
             }
             currentVersionCode > savedVersionCode -> {
                 // this is an upgrade
+                // atualiza o BD, ...
+
+                DataBaseUtil.abrir(this)
+                DataBaseUtil.criaDB()
 
                 val editor = sharedPreferences.edit()
                 editor.putInt(SP_KEY_VERSION_CODE, currentVersionCode)

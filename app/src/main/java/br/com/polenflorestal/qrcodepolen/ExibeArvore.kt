@@ -1,10 +1,11 @@
 package br.com.polenflorestal.qrcodepolen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import java.text.SimpleDateFormat
 
@@ -39,18 +40,19 @@ class ExibeArvore : AppCompatActivity() {
             val vol = cursor?.getString(cursor.getColumnIndex("vol"))
             val procedencia = cursor?.getString(cursor.getColumnIndex("procedencia"))
             val historico = cursor?.getString(cursor.getColumnIndex("historico"))
+            val especie_comp = cursor?.getString(cursor.getColumnIndex("especie_comp"))
 
             if(tipo == 0){
                 setContentView(R.layout.activity_exibe_arvore)
 
                 findViewById<TextView>(R.id.local).text = local
-                findViewById<TextView>(R.id.data_plantio).text = SimpleDateFormat("dd-MM-yyyy").parse(data_plantio).toString()
+                findViewById<TextView>(R.id.data_plantio).text = SimpleDateFormat("dd/MM/yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(data_plantio))
                 findViewById<TextView>(R.id.talhao).text = bloco.toString()
                 findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
                 findViewById<TextView>(R.id.especie).text = codigo_geno
                 findViewById<TextView>(R.id.genitores).text = genitor_fem
 
-                findViewById<TextView>(R.id.ult_medicao).text = SimpleDateFormat("dd-MM-yyyy").parse(ult_medicao).toString()
+                findViewById<TextView>(R.id.ult_medicao).text = SimpleDateFormat("dd/MM/yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(ult_medicao))
                 findViewById<TextView>(R.id.dap).text = "$dap cm"
                 findViewById<TextView>(R.id.altura).text = "$altura m"
                 findViewById<TextView>(R.id.vol).text = "$vol m³"
@@ -58,17 +60,27 @@ class ExibeArvore : AppCompatActivity() {
             else {
                 setContentView(R.layout.activity_exibe_arvore1)
 
+                findViewById<ImageView>(R.id.empresa_logo).setImageDrawable(getDrawable(R.drawable.empresa_icon2))
+
+                val uri = "@drawable/"+codigo.toLowerCase()+"_1" // where myresource (without the extension) is the file
+                val imageResource = resources.getIdentifier(uri, null, packageName)
+                findViewById<ImageView>(R.id.arvore_img_1).setImageResource(imageResource)
+
                 findViewById<TextView>(R.id.local).text = local
-                findViewById<TextView>(R.id.data_plantio).text = SimpleDateFormat("dd-MM-yyyy").parse(data_plantio).toString()
-                findViewById<TextView>(R.id.talhao).text = bloco.toString()
+                findViewById<TextView>(R.id.data_plantio).text = SimpleDateFormat("dd/MM/yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(data_plantio))
+                //findViewById<TextView>(R.id.talhao).text = bloco.toString()
                 findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
                 findViewById<TextView>(R.id.especie).text = codigo_geno
-                findViewById<TextView>(R.id.genitores).text = genitor_fem
+                findViewById<TextView>(R.id.especie_comp).text = especie_comp
+                //findViewById<TextView>(R.id.genitores).text = genitor_fem
 
-                findViewById<TextView>(R.id.ult_medicao).text = SimpleDateFormat("dd-MM-yyyy").parse(ult_medicao).toString()
-                findViewById<TextView>(R.id.dap).text = "$dap cm"
-                findViewById<TextView>(R.id.altura).text = "$altura m"
-                findViewById<TextView>(R.id.vol).text = "$vol m³"
+                //findViewById<TextView>(R.id.ult_medicao).text = SimpleDateFormat("dd-MM-yyyy").parse(ult_medicao).toString()
+                //findViewById<TextView>(R.id.dap).text = "$dap cm"
+                //findViewById<TextView>(R.id.altura).text = "$altura m"
+                //findViewById<TextView>(R.id.vol).text = "$vol m³"
+
+                findViewById<TextView>(R.id.procedencia).text = procedencia
+                findViewById<TextView>(R.id.historico).text = historico
             }
 
             break
