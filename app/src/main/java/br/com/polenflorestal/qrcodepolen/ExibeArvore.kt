@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import java.text.SimpleDateFormat
 
 class ExibeArvore : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,13 +44,13 @@ class ExibeArvore : AppCompatActivity() {
                 setContentView(R.layout.activity_exibe_arvore)
 
                 findViewById<TextView>(R.id.local).text = local
-                findViewById<TextView>(R.id.data_plantio).text = data_plantio
+                findViewById<TextView>(R.id.data_plantio).text = SimpleDateFormat("dd-MM-yyyy").parse(data_plantio).toString()
                 findViewById<TextView>(R.id.talhao).text = bloco.toString()
                 findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
                 findViewById<TextView>(R.id.especie).text = codigo_geno
                 findViewById<TextView>(R.id.genitores).text = genitor_fem
 
-                findViewById<TextView>(R.id.ult_medicao).text = ult_medicao
+                findViewById<TextView>(R.id.ult_medicao).text = SimpleDateFormat("dd-MM-yyyy").parse(ult_medicao).toString()
                 findViewById<TextView>(R.id.dap).text = "$dap cm"
                 findViewById<TextView>(R.id.altura).text = "$altura m"
                 findViewById<TextView>(R.id.vol).text = "$vol m³"
@@ -58,13 +59,13 @@ class ExibeArvore : AppCompatActivity() {
                 setContentView(R.layout.activity_exibe_arvore1)
 
                 findViewById<TextView>(R.id.local).text = local
-                findViewById<TextView>(R.id.data_plantio).text = data_plantio
+                findViewById<TextView>(R.id.data_plantio).text = SimpleDateFormat("dd-MM-yyyy").parse(data_plantio).toString()
                 findViewById<TextView>(R.id.talhao).text = bloco.toString()
                 findViewById<TextView>(R.id.individuo).text = arvore_pos.toString()
                 findViewById<TextView>(R.id.especie).text = codigo_geno
                 findViewById<TextView>(R.id.genitores).text = genitor_fem
 
-                findViewById<TextView>(R.id.ult_medicao).text = ult_medicao
+                findViewById<TextView>(R.id.ult_medicao).text = SimpleDateFormat("dd-MM-yyyy").parse(ult_medicao).toString()
                 findViewById<TextView>(R.id.dap).text = "$dap cm"
                 findViewById<TextView>(R.id.altura).text = "$altura m"
                 findViewById<TextView>(R.id.vol).text = "$vol m³"
