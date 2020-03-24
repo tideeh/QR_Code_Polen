@@ -1,7 +1,9 @@
 package br.com.polenflorestal.qrcodepolen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -10,11 +12,13 @@ import androidx.appcompat.widget.Toolbar
 import java.text.SimpleDateFormat
 
 class ExibeArvore : AppCompatActivity() {
+    lateinit var codigo : String
+    var arvore_pos : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        val codigo : String = intent.getStringExtra("qr_code")
+        codigo = intent.getStringExtra("qr_code")
         DataBaseUtil.abrir(this)
         var cursor = DataBaseUtil.buscar("Arvore", arrayOf<String>(), "codigo = '$codigo'", "")
 
@@ -29,7 +33,7 @@ class ExibeArvore : AppCompatActivity() {
             val parcela = cursor?.getInt(cursor.getColumnIndex("parcela"))
             val linha = cursor?.getInt(cursor.getColumnIndex("linha"))
             val bloco = cursor?.getInt(cursor.getColumnIndex("bloco"))
-            val arvore_pos = cursor?.getInt(cursor.getColumnIndex("arvore_pos"))
+            arvore_pos = cursor?.getInt(cursor.getColumnIndex("arvore_pos"))
             val codigo_geno = cursor?.getString(cursor.getColumnIndex("codigo_geno"))
             val genitor_fem = cursor?.getString(cursor.getColumnIndex("genitor_fem"))
             val genitor_mas = cursor?.getString(cursor.getColumnIndex("genitor_mas"))
@@ -106,5 +110,11 @@ class ExibeArvore : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun abrirCroqui(view: View) {
+        val intent = Intent(this, Croqui::class.java)
+        intent.putExtra("arvore_pos", arvore_pos)
+        startActivity(intent)
     }
 }
