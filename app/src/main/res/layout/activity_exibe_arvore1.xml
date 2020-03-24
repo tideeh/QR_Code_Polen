@@ -125,7 +125,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center_vertical"
                             android:text="-"
-                            android:textColor="#8C9EFF"
+                            android:textColor="#1433DC"
                             android:textStyle="italic" />
 
                         <TextView
@@ -134,7 +134,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center_vertical"
                             android:text="-"
-                            android:textColor="#8C9EFF" />
+                            android:textColor="#1433DC" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -156,7 +156,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center_vertical"
                             android:text="-"
-                            android:textColor="#8C9EFF" />
+                            android:textColor="#1433DC" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -178,7 +178,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center_vertical"
                             android:text="-"
-                            android:textColor="#8C9EFF" />
+                            android:textColor="#1433DC" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -200,7 +200,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center_vertical"
                             android:text="-"
-                            android:textColor="#8C9EFF" />
+                            android:textColor="#1433DC" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -222,7 +222,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center_vertical"
                             android:text="-"
-                            android:textColor="#8C9EFF" />
+                            android:textColor="#1433DC" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -265,7 +265,7 @@
                     android:gravity="start|center_vertical"
                     android:text="-"
                     android:textAlignment="center"
-                    android:textColor="#8C9EFF"
+                    android:textColor="#1433DC"
                     android:textStyle="bold" />
 
             </LinearLayout>

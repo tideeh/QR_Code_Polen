@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 
 class Croqui : AppCompatActivity() {
@@ -16,6 +17,11 @@ class Croqui : AppCompatActivity() {
         setContentView(R.layout.activity_croqui)
 
         arvore_pos = intent.getIntExtra("arvore_pos", 0)
+
+        if(arvore_pos < 1 || arvore_pos > 88){
+            ToastUtil.show(this, "Croqui não encontrado!", Toast.LENGTH_LONG)
+            finish()
+        }
 
         var cID : String = "c"+arvore_pos
 
