@@ -22,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(SP_NOME, Context.MODE_PRIVATE)
         val versionName = packageManager.getPackageInfo(packageName, 0).versionName
 
-        findViewById<TextView>(R.id.splash_version_name).text = versionName
+        //findViewById<TextView>(R.id.splash_version_name).text = versionName
 
         checkFirstRun()
 

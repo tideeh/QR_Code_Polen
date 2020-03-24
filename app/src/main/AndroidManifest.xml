@@ -21,7 +21,6 @@
         android:roundIcon="@mipmap/ic_launcher_my_1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExibeArvore1"></activity>
         <activity android:name=".ExibeArvore" />
         <activity
             android:name=".QRScanner"
