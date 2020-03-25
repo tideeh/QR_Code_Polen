@@ -24,7 +24,7 @@ import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var btnQRScan : ImageButton
+    private lateinit var btnQRScan: ImageButton
     val REQUEST_ID_MULTIPLE_PERMISSIONS = 7
 
     private lateinit var mDrawerLayout: DrawerLayout
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun btnScan(view: View) {
 
-        if( checkAndRequestPermissions() == true ){
+        if (checkAndRequestPermissions() == true) {
             scanQR()
         }
     }
@@ -53,22 +53,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val intent = Intent(this, QRScanner::class.java)
 
-        intent.putExtra(QR_IS_TOOLBAR_SHOW,true);
+        intent.putExtra(QR_IS_TOOLBAR_SHOW, true);
         //intent.putExtra(QR_TOOLBAR_DRAWABLE_ID,R.drawable.ic_audiotrack_dark);
         //intent.putExtra(QR_TOOLBAR_TEXT,"My QR");
         //intent.putExtra(QR_TOOLBAR_BACKGROUND_COLOR,"#0588EE");
         //intent.putExtra(QR_TOOLBAR_TEXT_COLOR,"#FFFFFF");
-        intent.putExtra(QR_BACKGROUND_COLOR,"#000000");
+        intent.putExtra(QR_BACKGROUND_COLOR, "#000000");
         //intent.putExtra(QR_CAMERA_MARGIN_LEFT,50);
         //intent.putExtra(QR_CAMERA_MARGIN_TOP,50);
         //intent.putExtra(QR_CAMERA_MARGIN_RIGHT,50);
         //intent.putExtra(QR_CAMERA_MARGIN_BOTTOM,50);
-        intent.putExtra(QR_CAMERA_BORDER,50);
-        intent.putExtra(QR_CAMERA_BORDER_COLOR,"#C1000000");
-        intent.putExtra(QR_IS_SCAN_BAR,true);
-        intent.putExtra(QR_IS_BEEP,true);
-        intent.putExtra(QR_BEEP_RESOURCE_ID,R.raw.beep);
-
+        intent.putExtra(QR_CAMERA_BORDER, 50);
+        intent.putExtra(QR_CAMERA_BORDER_COLOR, "#C1000000");
+        intent.putExtra(QR_IS_SCAN_BAR, true);
+        intent.putExtra(QR_IS_BEEP, true);
+        intent.putExtra(QR_BEEP_RESOURCE_ID, R.raw.beep);
 
         startActivityForResult(intent, QR_QR_SCANNER_REQUEST)
 
@@ -76,8 +75,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun checkAndRequestPermissions(): Boolean {
         val camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-        val wtite = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        val read = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        val wtite =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val read =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
 
         val listPermissionsNeeded: MutableList<String> = ArrayList()
         if (wtite != PackageManager.PERMISSION_GRANTED) {
@@ -133,7 +134,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 this,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE
                             ) || ActivityCompat.shouldShowRequestPermissionRationale(
-                                 this,
+                                this,
                                 Manifest.permission.CAMERA
                             ) || ActivityCompat.shouldShowRequestPermissionRationale(
                                 this,
@@ -150,10 +151,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 })
                         } else {
                             Toast.makeText(
-                                this,
-                                "Go to settings and enable permissions",
-                                Toast.LENGTH_LONG
-                            )
+                                    this,
+                                    "Go to settings and enable permissions",
+                                    Toast.LENGTH_LONG
+                                )
                                 .show()
                             //                            //proceed with logic by disabling the related features or quit the app.
                         }
@@ -178,7 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == QR_QR_SCANNER_REQUEST){
+        if (requestCode == QR_QR_SCANNER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 //tvSelected.text = data?.getStringExtra(QR_DATA) ?: "-1";
                 val intent = Intent(this, ExibeArvore::class.java)
@@ -218,7 +219,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
 
             //R.id.nav_item_testar_amostra -> {
             //    startActivity(Intent(this, ExecutarTeste1Activity::class.java))
