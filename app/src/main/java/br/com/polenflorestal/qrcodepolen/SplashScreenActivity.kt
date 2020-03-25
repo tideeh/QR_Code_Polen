@@ -8,19 +8,25 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.datatransport.BuildConfig
 
 
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var versionName : String
+    private var currentVersionCode : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
         sharedPreferences = getSharedPreferences(SP_NOME, Context.MODE_PRIVATE)
-        val versionName = packageManager.getPackageInfo(packageName, 0).versionName
+
+        versionName = packageManager.getPackageInfo(packageName, 0).versionName
+        currentVersionCode = BuildConfig.VERSION_CODE
+
+        Log.i("SPLASH_SCREEN", "CurrentVersionName: $versionName")
+        Log.i("SPLASH_SCREEN", "CurrentVersionCode: $currentVersionCode")
 
         //findViewById<TextView>(R.id.splash_version_name).text = versionName
 
@@ -46,17 +52,20 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun checkFirstRun() {
-        val currentVersionCode : Int = BuildConfig.VERSION_CODE
+        //val currentVersionCode : Int = BuildConfig.VERSION_CODE
         val savedVersionCode : Int = sharedPreferences.getInt(SP_KEY_VERSION_CODE, DEFAULT_INT_VALUE)
 
         when {
             currentVersionCode == savedVersionCode -> {
                 // this is just a normal run
+                Log.i("SPLASH_SCREEN", "NORMAL RUN")
                 return
             }
             savedVersionCode == DEFAULT_INT_VALUE -> {
                 // this is a new install (or the user cleared the preferences)
                 // cria o BD, ...
+
+                Log.i("SPLASH_SCREEN", "NEW INSTALL")
 
                 DataBaseUtil.abrir(this)
                 DataBaseUtil.criaDB()
@@ -70,6 +79,8 @@ class SplashScreenActivity : AppCompatActivity() {
             currentVersionCode > savedVersionCode -> {
                 // this is an upgrade
                 // atualiza o BD, ...
+
+                Log.i("SPLASH_SCREEN", "UPDATE RUN")
 
                 DataBaseUtil.abrir(this)
                 DataBaseUtil.criaDB()
