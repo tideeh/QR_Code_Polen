@@ -1,7 +1,6 @@
 package br.com.polenflorestal.qrcodepolen
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.media.MediaPlayer
@@ -144,7 +143,7 @@ class QRScanner : AppCompatActivity() {
             )
             val intent = Intent()
             intent.putExtra(QR_DATA, "")
-            setResult(Activity.RESULT_CANCELED, intent)
+            setResult(AppCompatActivity.RESULT_CANCELED, intent)
             finish()
         }
         cameraSource = CameraSource.Builder(this, barcode)
@@ -184,7 +183,7 @@ class QRScanner : AppCompatActivity() {
                     val code: String = barcodes?.valueAt(0)?.rawValue ?: "-1"
                     val intent = Intent()
                     intent.putExtra(QR_DATA, code)
-                    setResult(Activity.RESULT_OK, intent)
+                    setResult(AppCompatActivity.RESULT_OK, intent)
                     Log.d(TAG, "receiveDetections: $code")
                     finish()
                 }

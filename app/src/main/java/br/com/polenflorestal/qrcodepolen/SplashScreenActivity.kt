@@ -7,8 +7,8 @@ import android.database.Cursor
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.datatransport.BuildConfig
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -27,11 +27,11 @@ class SplashScreenActivity : AppCompatActivity() {
         checkFirstRun()
 
         DataBaseUtil.abrir(this)
-        var c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "local"), "local = 'Viçosa/MG'", "")
+        val c : Cursor? = DataBaseUtil.buscar("Arvore", arrayOf<String>("codigo", "local"), "local = 'Viçosa/MG'", "")
 
         while (c?.moveToNext()!!){
-            var cod : String = c.getString(0)
-            var emp : String = c.getString(1)
+            val cod : String = c.getString(0)
+            val emp : String = c.getString(1)
 
             Log.i("BANCO_DADOS", "teste busca: $cod $emp");
         }

@@ -1,11 +1,11 @@
 package br.com.polenflorestal.qrcodepolen
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class Croqui : AppCompatActivity() {
@@ -23,7 +23,7 @@ class Croqui : AppCompatActivity() {
             finish()
         }
 
-        var cID : String = "c"+arvore_pos
+        val cID : String = "c"+arvore_pos
 
         findViewById<TextView>( resources.getIdentifier(cID, "id", packageName)).setBackgroundColor(
             Color.parseColor("#ff0000"))

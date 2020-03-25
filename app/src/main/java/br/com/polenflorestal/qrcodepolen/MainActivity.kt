@@ -1,19 +1,16 @@
 package br.com.polenflorestal.qrcodepolen
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -53,21 +50,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val intent = Intent(this, QRScanner::class.java)
 
-        intent.putExtra(QR_IS_TOOLBAR_SHOW, true);
-        //intent.putExtra(QR_TOOLBAR_DRAWABLE_ID,R.drawable.ic_audiotrack_dark);
-        //intent.putExtra(QR_TOOLBAR_TEXT,"My QR");
-        //intent.putExtra(QR_TOOLBAR_BACKGROUND_COLOR,"#0588EE");
-        //intent.putExtra(QR_TOOLBAR_TEXT_COLOR,"#FFFFFF");
-        intent.putExtra(QR_BACKGROUND_COLOR, "#000000");
-        //intent.putExtra(QR_CAMERA_MARGIN_LEFT,50);
-        //intent.putExtra(QR_CAMERA_MARGIN_TOP,50);
-        //intent.putExtra(QR_CAMERA_MARGIN_RIGHT,50);
-        //intent.putExtra(QR_CAMERA_MARGIN_BOTTOM,50);
-        intent.putExtra(QR_CAMERA_BORDER, 50);
-        intent.putExtra(QR_CAMERA_BORDER_COLOR, "#C1000000");
-        intent.putExtra(QR_IS_SCAN_BAR, true);
-        intent.putExtra(QR_IS_BEEP, true);
-        intent.putExtra(QR_BEEP_RESOURCE_ID, R.raw.beep);
+        intent.putExtra(QR_IS_TOOLBAR_SHOW, true)
+        //intent.putExtra(QR_TOOLBAR_DRAWABLE_ID,R.drawable.ic_audiotrack_dark)
+        //intent.putExtra(QR_TOOLBAR_TEXT,"My QR")
+        //intent.putExtra(QR_TOOLBAR_BACKGROUND_COLOR,"#0588EE")
+        //intent.putExtra(QR_TOOLBAR_TEXT_COLOR,"#FFFFFF")
+        intent.putExtra(QR_BACKGROUND_COLOR, "#000000")
+        //intent.putExtra(QR_CAMERA_MARGIN_LEFT,50)
+        //intent.putExtra(QR_CAMERA_MARGIN_TOP,50)
+        //intent.putExtra(QR_CAMERA_MARGIN_RIGHT,50)
+        //intent.putExtra(QR_CAMERA_MARGIN_BOTTOM,50)
+        intent.putExtra(QR_CAMERA_BORDER, 50)
+        intent.putExtra(QR_CAMERA_BORDER_COLOR, "#C1000000")
+        intent.putExtra(QR_IS_SCAN_BAR, true)
+        intent.putExtra(QR_IS_BEEP, true)
+        intent.putExtra(QR_BEEP_RESOURCE_ID, R.raw.beep)
 
         startActivityForResult(intent, QR_QR_SCANNER_REQUEST)
 

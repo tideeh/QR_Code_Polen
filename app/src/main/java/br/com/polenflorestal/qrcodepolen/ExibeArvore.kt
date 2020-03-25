@@ -26,7 +26,7 @@ class ExibeArvore : AppCompatActivity() {
 
         codigo = intent.getStringExtra("qr_code")
         DataBaseUtil.abrir(this)
-        var cursor = DataBaseUtil.buscar("Arvore", arrayOf<String>(), "codigo = '$codigo'", "")
+        val cursor = DataBaseUtil.buscar("Arvore", arrayOf<String>(), "codigo = '$codigo'", "")
         val comentarios = DataBaseUtil.buscar("Comentario", arrayOf<String>(), "arvore_codigo = '$codigo'", "")
 
         if (cursor?.count ?: 0 <= 0) {
@@ -35,23 +35,23 @@ class ExibeArvore : AppCompatActivity() {
         }
 
         while (cursor?.moveToNext()!!) {
-            val tipo = cursor?.getInt(cursor.getColumnIndex("tipo"))
-            val local = cursor?.getString(cursor.getColumnIndex("local"))
-            val parcela = cursor?.getInt(cursor.getColumnIndex("parcela"))
-            val linha = cursor?.getInt(cursor.getColumnIndex("linha"))
-            val bloco = cursor?.getInt(cursor.getColumnIndex("bloco"))
-            arvore_pos = cursor?.getInt(cursor.getColumnIndex("arvore_pos"))
-            val codigo_geno = cursor?.getString(cursor.getColumnIndex("codigo_geno"))
-            val genitor_fem = cursor?.getString(cursor.getColumnIndex("genitor_fem"))
-            val genitor_mas = cursor?.getString(cursor.getColumnIndex("genitor_mas"))
-            val data_plantio = cursor?.getString(cursor.getColumnIndex("data_plantio"))
-            val ult_medicao = cursor?.getString(cursor.getColumnIndex("ult_medicao"))
-            val dap = cursor?.getString(cursor.getColumnIndex("dap"))
-            val altura = cursor?.getString(cursor.getColumnIndex("altura"))
-            val vol = cursor?.getString(cursor.getColumnIndex("vol"))
-            val procedencia = cursor?.getString(cursor.getColumnIndex("procedencia"))
-            val historico = cursor?.getString(cursor.getColumnIndex("historico"))
-            val especie_comp = cursor?.getString(cursor.getColumnIndex("especie_comp"))
+            val tipo = cursor.getInt(cursor.getColumnIndex("tipo"))
+            val local = cursor.getString(cursor.getColumnIndex("local"))
+            val parcela = cursor.getInt(cursor.getColumnIndex("parcela"))
+            val linha = cursor.getInt(cursor.getColumnIndex("linha"))
+            val bloco = cursor.getInt(cursor.getColumnIndex("bloco"))
+            arvore_pos = cursor.getInt(cursor.getColumnIndex("arvore_pos"))
+            val codigo_geno = cursor.getString(cursor.getColumnIndex("codigo_geno"))
+            val genitor_fem = cursor.getString(cursor.getColumnIndex("genitor_fem"))
+            val genitor_mas = cursor.getString(cursor.getColumnIndex("genitor_mas"))
+            val data_plantio = cursor.getString(cursor.getColumnIndex("data_plantio"))
+            val ult_medicao = cursor.getString(cursor.getColumnIndex("ult_medicao"))
+            val dap = cursor.getString(cursor.getColumnIndex("dap"))
+            val altura = cursor.getString(cursor.getColumnIndex("altura"))
+            val vol = cursor.getString(cursor.getColumnIndex("vol"))
+            val procedencia = cursor.getString(cursor.getColumnIndex("procedencia"))
+            val historico = cursor.getString(cursor.getColumnIndex("historico"))
+            val especie_comp = cursor.getString(cursor.getColumnIndex("especie_comp"))
 
             if (tipo == 0) {
                 setContentView(R.layout.activity_exibe_arvore)
@@ -193,7 +193,7 @@ class ExibeArvore : AppCompatActivity() {
             }
         }
         builder.setNegativeButton(
-            "Cancel"
+            "Cancelar"
         ) { dialog, which -> dialog.cancel() }
 
         builder.show()

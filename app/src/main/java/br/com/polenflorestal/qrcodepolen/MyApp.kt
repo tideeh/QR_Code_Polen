@@ -15,4 +15,5 @@ class MyApp : Application() {
 
         MyApp.context = applicationContext
     }
+
 }

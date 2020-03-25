@@ -33,10 +33,10 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/empresa_icon1" />
+                    app:srcCompat="@drawable/empresa_icon1" />
 
                 <LinearLayout
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -414,7 +414,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/logo_horizontal" />
+            app:srcCompat="@drawable/logo_horizontal" />
     </LinearLayout>
 
 </RelativeLayout>
