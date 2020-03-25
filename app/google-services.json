@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "635322771125",
+    "firebase_url": "https://polen-qr-code.firebaseio.com",
+    "project_id": "polen-qr-code",
+    "storage_bucket": "polen-qr-code.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635322771125:android:f24e0ee7e33e64e20380fc",
+        "android_client_info": {
+          "package_name": "br.com.polenflorestal.qrcodepolen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635322771125-i1s1uibqvhpfb9lae8if7nfe8rt297s9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.polenflorestal.qrcodepolen",
+            "certificate_hash": "e3aaec973184a9ba7fd531f1d65392b75a989e0e"
+          }
+        },
+        {
+          "client_id": "635322771125-8rb8ssk307qe8bh8s8alrpeql54gj2hi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSQdKAcSIDhCumEjmzhZo2Z-qtYtzfFxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635322771125-8rb8ssk307qe8bh8s8alrpeql54gj2hi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
