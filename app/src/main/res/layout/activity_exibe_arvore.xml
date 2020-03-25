@@ -239,6 +239,7 @@
                 android:background="@color/colorPrimaryLight" />
 
             <LinearLayout
+                android:id="@+id/linear_comentarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -251,24 +252,6 @@
                     android:text="Observações:"
                     android:textAllCaps="true"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/obs1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start|center_vertical"
-                    android:text="- 11/02/2018: Ponteira quebrada"
-                    android:textColor="#1433DC" />
-
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/obs2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start|center_vertical"
-                    android:text="- 03/04/2019: Sintomas de deficiência de fósforo"
-                    android:textColor="#1433DC" />
 
             </LinearLayout>
 
@@ -408,7 +391,8 @@
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Comentário" />
+                android:text="Comentário"
+                android:onClick="adicionarComentario"/>
 
             <Button
                 android:paddingStart="7dp"

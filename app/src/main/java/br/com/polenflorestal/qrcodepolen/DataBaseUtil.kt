@@ -86,6 +86,9 @@ object DataBaseUtil {
             "INSERT INTO [Arvore]([codigo], [tipo], [local], [parcela], [linha], [bloco], [arvore_pos], [codigo_geno], [genitor_fem], [genitor_mas], [data_plantio], [ult_medicao], [dap], [altura], [vol], [procedencia], [historico], [especie_comp]) VALUES('P2085B337A2', 0, 'Viçosa/MG', 2085, 25, 337, 2, 'G1 X UGL', '(E. grandis) x (E. urophylla x E. globulus)', 'desconhecido (pol. Livre)', '7/16/2017 12:00:00 AM', '5/27/2019 12:00:00 AM', 27, 29, 0.25, null, null, null);",
             "INSERT INTO [Arvore]([codigo], [tipo], [local], [parcela], [linha], [bloco], [arvore_pos], [codigo_geno], [genitor_fem], [genitor_mas], [data_plantio], [ult_medicao], [dap], [altura], [vol], [procedencia], [historico], [especie_comp]) VALUES('P1342B201A7', 0, 'Viçosa/MG', 1342, 22, 201, 7, 'G1 X UGL', '(E. grandis) x (E. urophylla x E. globulus)', 'desconhecido (pol. Livre)', '7/17/2017 12:00:00 AM', '5/28/2019 12:00:00 AM', 28, 30, 0.26, null, null, null);",
             "INSERT INTO [Arvore]([codigo], [tipo], [local], [parcela], [linha], [bloco], [arvore_pos], [codigo_geno], [genitor_fem], [genitor_mas], [data_plantio], [ult_medicao], [dap], [altura], [vol], [procedencia], [historico], [especie_comp]) VALUES('P4899B828A6', 0, 'Viçosa/MG', 4899, 40, 828, 6, 'DG X UGL', '(E. dunnii x E. grandis) x (E. urophylla x E. globulus)', 'desconhecido (pol. Livre)', '7/18/2017 12:00:00 AM', '5/29/2019 12:00:00 AM', 29, 31, 0.27, null, null, null);"
+
+            //"INSERT INTO [Comentario]([arvore_codigo], [comentario], [data]) VALUES('P4899B828A6', 'TESTE AAAAAAAAAAAAAAAAAAA B', '7/18/2017 12:00:00 AM');",
+            //"INSERT INTO [Comentario]([arvore_codigo], [comentario], [data]) VALUES('P4899B828A6', 'TESTE CCCCCCCCCCCCC D', '11/02/2018');"
         )
 
         for (element in SCRIPT_DATABASE_CREATE) {
