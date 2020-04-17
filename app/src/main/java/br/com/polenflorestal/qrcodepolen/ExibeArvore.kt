@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -27,7 +28,7 @@ class ExibeArvore : AppCompatActivity() {
         codigo = intent.getStringExtra("qr_code")
         DataBaseUtil.abrir(this)
         val cursor = DataBaseUtil.buscar("Arvore", arrayOf<String>(), "codigo = '$codigo'", "")
-        val comentarios = DataBaseUtil.buscar("Comentario", arrayOf<String>(), "arvore_codigo = '$codigo'", "")
+        //val comentarios = DataBaseUtil.buscar("Comentario", arrayOf<String>(), "arvore_codigo = '$codigo'", "")
 
         if (cursor?.count ?: 0 <= 0) {
             ToastUtil.show(this, "Código não encontrado no Banco de Dados!", Toast.LENGTH_LONG)
@@ -73,13 +74,33 @@ class ExibeArvore : AppCompatActivity() {
                 findViewById<TextView>(R.id.dap).text = "$dap cm"
                 findViewById<TextView>(R.id.altura).text = "$altura m"
                 findViewById<TextView>(R.id.vol).text = "$vol m³"
-
+/*
                 while (comentarios?.moveToNext()!!) {
                     var data = comentarios.getString(comentarios.getColumnIndex("data"))
                     //data = SimpleDateFormat("dd/MM/yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(data))
                     val com = comentarios.getString(comentarios.getColumnIndex("comentario"))
                     exibeComentario(data, com)
                 }
+
+ */
+                DataBaseOnlineUtil.getDocumentsWhereEqualTo("Empresa/$EMPRESA_NOME/Comentario", "arvoreCodigo", codigo)
+                    .addOnCompleteListener { task ->
+                        if( task.isSuccessful ){
+                            val documents = task.result
+                            if( documents != null ){
+                                for( document in documents ){
+                                    val c : Comentario = document.toObject(Comentario::class.java)
+                                    exibeComentario(c.dataCriacao, c.texto)
+                                }
+                            }
+                        }
+                        else {
+                            Log.i(
+                                "MY_FIRESTORE",
+                                "atualiza_lista_dieta: " + task.exception
+                            )
+                        }
+                    }
 
             } else {
                 setContentView(R.layout.activity_exibe_arvore1)
@@ -179,17 +200,24 @@ class ExibeArvore : AppCompatActivity() {
                 ToastUtil.show(this, "Erro ao inserir comentário: comentário vazio!", Toast.LENGTH_LONG)
             }
             else{
-                val todayDate: Date = Calendar.getInstance().time
-                val formatter = SimpleDateFormat("dd/MM/yyyy")
-                val todayString = formatter.format(todayDate)
+                //val todayDate: Date = Calendar.getInstance().time
+                //val formatter = SimpleDateFormat("dd/MM/yyyy")
+                //val todayString = formatter.format(todayDate)
 
-                val valores = ContentValues()
-                valores.put("arvore_codigo", codigo)
-                valores.put("comentario", comentario)
-                valores.put("data", todayString)
-                DataBaseUtil.inserir("Comentario", valores)
+                //val valores = ContentValues()
+                //valores.put("arvore_codigo", codigo)
+                //valores.put("comentario", comentario)
+                //valores.put("data", todayString)
 
-                exibeComentario(todayString, comentario)
+                //DataBaseUtil.inserir("Comentario", valores)
+
+                val comentarioObj = Comentario()
+                comentarioObj.texto = comentario
+                comentarioObj.arvoreCodigo = codigo
+
+                DataBaseOnlineUtil.insertDocument("Empresa/$EMPRESA_NOME/Comentario", comentarioObj.id, comentarioObj)
+
+                exibeComentario(comentarioObj.dataCriacao, comentario)
             }
         }
         builder.setNegativeButton(

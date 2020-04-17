@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
@@ -37,6 +38,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configuraToolbarComNavDrawer()
 
         btnQRScan = findViewById(R.id.btnQRScan)
+
+        // adiciona listener nos comentarios
+        DataBaseOnlineUtil.getCollectionReference("Empresa/$EMPRESA_NOME/Comentario").addSnapshotListener { value, e ->
+            if( e != null ){
+                Log.w("MY_FIREBASE", "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (value != null) {
+                for( doc in value ){
+                    var c : Comentario = doc.toObject(Comentario::class.java)
+                    Log.i("MY_FIREBASE", "comentario: ${c.texto}")
+                }
+            }
+        }
     }
 
     fun btnScan(view: View) {

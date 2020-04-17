@@ -1,5 +1,7 @@
 package br.com.polenflorestal.qrcodepolen
 
+// Nome da empresa que vai usar o APP
+const val EMPRESA_NOME = "POLEN"
 // sharedPreferences nome
 const val SP_NOME = "qrcodepolen_prefs"
 const val SP_KEY_VERSION_CODE = "version_code"
