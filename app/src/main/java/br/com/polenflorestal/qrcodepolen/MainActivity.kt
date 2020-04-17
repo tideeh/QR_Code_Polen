@@ -18,12 +18,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.firestore.ListenerRegistration
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var btnQRScan: ImageButton
     val REQUEST_ID_MULTIPLE_PERMISSIONS = 7
+    //private var listenerComentarios : ListenerRegistration? = null
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mDrawerToggle: ActionBarDrawerToggle
@@ -38,22 +40,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configuraToolbarComNavDrawer()
 
         btnQRScan = findViewById(R.id.btnQRScan)
-
-        // adiciona listener nos comentarios
-        DataBaseOnlineUtil.getCollectionReference("Empresa/$EMPRESA_NOME/Comentario").addSnapshotListener { value, e ->
-            if( e != null ){
-                Log.w("MY_FIREBASE", "Listen failed.", e)
-                return@addSnapshotListener
-            }
-
-            if (value != null) {
-                for( doc in value ){
-                    var c : Comentario = doc.toObject(Comentario::class.java)
-                    Log.i("MY_FIREBASE", "comentario: ${c.texto}")
-                }
-            }
-        }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //listenerComentarios.remove()
+        //Log.i("MY_FIREBASE_MAIN", "listener removido")
+    }
+
 
     fun btnScan(view: View) {
 

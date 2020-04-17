@@ -42,6 +42,23 @@ class SplashScreenActivity : AppCompatActivity() {
             Log.i("BANCO_DADOS", "teste busca: $cod $emp");
         }
 
+        // adiciona listener nos comentarios
+        //listenerComentarios?.remove()
+        DataBaseOnlineUtil.getCollectionReference("Empresa/$EMPRESA_NOME/Comentario").addSnapshotListener { value, e ->
+            if( e != null ){
+                Log.w("MY_FIREBASE", "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (value != null) {
+                for( doc in value ){
+                    //var c : Comentario = doc.toObject(Comentario::class.java)
+                    //Log.i("MY_FIREBASE", "comentario: ${doc.toObject(Comentario::class.java).texto}")
+                }
+            }
+            Log.i("MY_FIREBASE_SPLASH", "listener recebido!")
+        }
+
         Handler().postDelayed( {fechaSplash()}, 500)
     }
 

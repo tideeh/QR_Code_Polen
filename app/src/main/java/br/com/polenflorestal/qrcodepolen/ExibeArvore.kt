@@ -1,6 +1,5 @@
 package br.com.polenflorestal.qrcodepolen
 
-import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -14,13 +13,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 class ExibeArvore : AppCompatActivity() {
     lateinit var codigo: String
     var arvore_pos: Int = 0
+    private lateinit var listenerComentarios : ListenerRegistration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +84,7 @@ class ExibeArvore : AppCompatActivity() {
                 }
 
  */
+                /*
                 DataBaseOnlineUtil.getDocumentsWhereEqualTo("Empresa/$EMPRESA_NOME/Comentario", "arvoreCodigo", codigo)
                     .addOnCompleteListener { task ->
                         if( task.isSuccessful ){
@@ -100,6 +102,30 @@ class ExibeArvore : AppCompatActivity() {
                                 "atualiza_lista_dieta: " + task.exception
                             )
                         }
+                    }
+
+                 */
+                listenerComentarios = DataBaseOnlineUtil.getCollectionReferenceWhereEqualTo(
+                    "Empresa/$EMPRESA_NOME/Comentario",
+                    "arvoreCodigo",
+                    codigo,
+                    "criacaoTimestamp",
+                    Query.Direction.DESCENDING
+                )
+                    .addSnapshotListener { value, e ->
+                        if (e != null) {
+                            Log.w("MY_FIREBASE", "Listen failed.", e)
+                            return@addSnapshotListener
+                        }
+
+                        if (value != null) {
+                            limpaComentariosView()
+                            for (doc in value) {
+                                val c: Comentario = doc.toObject(Comentario::class.java)
+                                exibeComentario(c.dataCriacao, c.texto)
+                            }
+                        }
+                        Log.i("MY_FIREBASE_EXIBEARVORE", "listener recebido!")
                     }
 
             } else {
@@ -138,6 +164,12 @@ class ExibeArvore : AppCompatActivity() {
         configuraToolbar()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        listenerComentarios.remove()
+        Log.i("MY_FIREBASE_EXIBEARVORE", "listener removido")
+    }
+
     private fun configuraToolbar() { // adiciona a barra de tarefas na tela
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
@@ -174,6 +206,10 @@ class ExibeArvore : AppCompatActivity() {
         com1.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         com1.layoutParams = params
         findViewById<LinearLayout>(R.id.linear_comentarios).addView(com1)
+    }
+
+    fun limpaComentariosView() {
+        findViewById<LinearLayout>(R.id.linear_comentarios).removeAllViews()
     }
 
     fun adicionarComentario(view: View) {
@@ -217,7 +253,7 @@ class ExibeArvore : AppCompatActivity() {
 
                 DataBaseOnlineUtil.insertDocument("Empresa/$EMPRESA_NOME/Comentario", comentarioObj.id, comentarioObj)
 
-                exibeComentario(comentarioObj.dataCriacao, comentario)
+                //exibeComentario(comentarioObj.dataCriacao, comentario)
             }
         }
         builder.setNegativeButton(

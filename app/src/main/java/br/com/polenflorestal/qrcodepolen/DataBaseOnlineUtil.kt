@@ -10,6 +10,12 @@ object DataBaseOnlineUtil {
 
     fun getCollectionReference(collection : String) = db.collection(collection)
 
+    fun getCollectionReferenceWhereEqualTo(collection : String, whereKey: String, whereValue: Any)
+            = db.collection(collection).whereEqualTo(whereKey, whereValue)
+
+    fun getCollectionReferenceWhereEqualTo(collection : String, whereKey: String, whereValue: Any, orderBy : String, direction : Query.Direction)
+            = db.collection(collection).whereEqualTo(whereKey, whereValue).orderBy(orderBy, direction)
+
     fun insertDocument(
         collection: String,
         documentID: String,
