@@ -44,7 +44,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         // adiciona listener nos comentarios
         //listenerComentarios?.remove()
-        DataBaseOnlineUtil.getCollectionReference("Empresa/$EMPRESA_NOME/Comentario").addSnapshotListener { value, e ->
+        DataBaseOnlineUtil.getInstance().getCollectionReference("Empresa/$EMPRESA_NOME/Comentario").addSnapshotListener { value, e ->
             if( e != null ){
                 Log.w("MY_FIREBASE", "Listen failed.", e)
                 return@addSnapshotListener

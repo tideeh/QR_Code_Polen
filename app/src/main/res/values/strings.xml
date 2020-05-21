@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">QR LYPTUS</string>
+    <string name="app_name">QR Lyptus</string>
     <string name="imagem_logo">logo imagem</string>
-    <string name="logo_name">QR LYPTUS</string>
+    <string name="logo_name">QR Lyptus</string>
     <string name="objeto_selecionado">Objeto selecionado:</string>
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
